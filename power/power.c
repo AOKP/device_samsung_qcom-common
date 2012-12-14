@@ -26,6 +26,8 @@
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 
+#define ONDEMAND_GOVERNOR "ondemand"
+#define INTERACTIVE_GOVERNOR "interactive"
 #define SCALING_GOVERNOR_PATH "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 #define BOOSTPULSE_ONDEMAND "/sys/devices/system/cpu/cpufreq/ondemand/boostpulse"
 #define BOOSTPULSE_INTERACTIVE "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
@@ -119,9 +121,9 @@ static int boostpulse_open(struct cm_power_module *cm)
             ALOGE("Can't read scaling governor.");
             cm->boostpulse_warned = 1;
         } else {
-            if (strncmp(governor, "ondemand", 8) == 0)
+            if (strncmp(governor, ONDEMAND_GOVERNOR, 8) == 0)
                 cm->boostpulse_fd = open(BOOSTPULSE_ONDEMAND, O_WRONLY);
-            else if (strncmp(governor, "interactive", 11) == 0)
+            else if (strncmp(governor, INTERACTIVE_GOVERNOR, 11) == 0)
                 cm->boostpulse_fd = open(BOOSTPULSE_INTERACTIVE, O_WRONLY);
 
             if (cm->boostpulse_fd < 0 && !cm->boostpulse_warned) {
@@ -180,7 +182,7 @@ static void cm_power_set_interactive(struct power_module *module, int on)
 {
     char governor[80];
 
-    if (strncmp(governor, "ondemand", 8) == 0)
+    if (strncmp(governor, ONDEMAND_GOVERNOR, 8) == 0)
         sysfs_write(SAMPLING_RATE_ONDEMAND,
                 on ? SAMPLING_RATE_SCREEN_ON : SAMPLING_RATE_SCREEN_OFF);
     else
@@ -191,7 +193,7 @@ static void cm_power_init(struct power_module *module)
 {
     char governor[80];
 
-    if (strncmp(governor, "ondemand", 8) == 0)
+    if (strncmp(governor, ONDEMAND_GOVERNOR, 8) == 0)
         sysfs_write(SAMPLING_RATE_ONDEMAND, SAMPLING_RATE_SCREEN_ON);
     else
         ALOGV("Skipping sysfs_write to sampling_rate -- NOT using ondemand");
