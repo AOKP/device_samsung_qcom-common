@@ -118,6 +118,14 @@ case "$target" in
          echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
          echo 384000 > /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
          echo 384000 > /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
+         echo 1 > /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled
+         echo 1 > /sys/module/pm_8x60/modes/cpu1/retention/idle_enabled
+         echo 1 > /sys/module/pm_8x60/modes/cpu0/retention/suspend_enabled
+         echo 1 > /sys/module/pm_8x60/modes/cpu1/retention/suspend_enabled
+         chown system /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled
+         chown system /sys/module/pm_8x60/modes/cpu0/retention/suspend_enabled
+         chown system /sys/module/pm_8x60/modes/cpu1/retention/idle_enabled
+         chown system /sys/module/pm_8x60/modes/cpu1/retention/suspend_enabled
          chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
          chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
          chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
