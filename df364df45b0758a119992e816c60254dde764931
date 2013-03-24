@@ -1,3 +1,9 @@
+Submitted-by: Jonathan Steadman <xxwhitehawk@gmail.com>
+Submitted-at: Tue, 19 Mar 2013 15:12:02 +0100
+Reviewed-on: http://gerrit.sudoservers.com/7329
+Project: AOKP/device_samsung_qcom-common
+Branch: refs/heads/jb-mr1
+
 Change-Id: Idf364df45b0758a119992e816c60254dde764931
 Code-Review+2: Jonathan Steadman <xxwhitehawk@gmail.com>
 Verified+1: Jonathan Steadman <xxwhitehawk@gmail.com>
