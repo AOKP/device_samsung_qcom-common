@@ -36,8 +36,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_QCOM_AUDIO_VARIANT := caf
-TARGET_QCOM_DISPLAY_VARIANT := caf
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -56,5 +54,3 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charg
 BOARD_BATTERY_DEVICE_NAME := "battery"
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/qcom-common
-
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
