@@ -31,6 +31,9 @@ TARGET_PROVIDES_POWERHAL := true
 # Flags
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
+# Enable vendor init modue
+TARGET_INIT_VENDOR_LIB := libinit_msm
+
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
