@@ -22,9 +22,7 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libmemalloc \
     liboverlay \
-    libqdutils \
-    libtilerenderer \
-    libI420colorconvert
+    libqdutils
 
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
@@ -39,11 +37,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Vendor init module
 PRODUCT_PACKAGES += \
     libinit_msm
-
-# TODO: Move here
-#PRODUCT_PACKAGES += \
-#     GalaxyS3Settings \
-#     SamsungServiceMode
 
 # Omx
 PRODUCT_PACKAGES += \
