@@ -33,13 +33,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
     ro.telephony.ril_class=SamsungQualcommRIL \
+    ro.telephony.call_ring.multiple=0 \
     qcom.hw.aac.encoder=true
 
 # Vendor init module
 PRODUCT_PACKAGES += \
     libinit_msm
 
-# GalaxyS3Settings
 # TODO: Move here
 #PRODUCT_PACKAGES += \
 #     GalaxyS3Settings \
@@ -66,6 +66,7 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # Thermal profiles
+ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
 PRODUCT_PACKAGES += \
     thermald-8064ab.conf \
     thermald-8064.conf \
@@ -73,10 +74,8 @@ PRODUCT_PACKAGES += \
     thermald-8930ab.conf \
     thermald-8960.conf \
     thermald-8960ab.conf \
-    thermal-engine-8064ab.conf \
-    thermal-engine-8064.conf \
-    thermal-engine-8930.conf \
-    thermal-engine-8960.conf
+    thermal-engine-8064ab.conf
+endif
 
 # Init scripts
 PRODUCT_PACKAGES += \

@@ -77,9 +77,10 @@ if [ -f /system/etc/init.qcom.sensor.sh ]; then
   /system/bin/sh /system/etc/init.qcom.sensor.sh
 fi
 
+touch /system/etc/boot_fixup
+
+if $mount_needed ;then
 # This should be the last command
 # remount system as read-only.
   mount -o ro,remount,barrier=1 /system
-
-
-
+fi
