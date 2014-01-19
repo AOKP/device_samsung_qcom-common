@@ -74,6 +74,7 @@ PRODUCT_PACKAGES += \
     init.qcom.efs.sync.sh \
     init.qcom.sh \
     init.qcom.class_core.sh \
+    init.qcom.class_main.sh \
     init.qcom.syspart_fixup.sh \
     init.qcom.early_boot.sh \
     init.qcom.mdm_links.sh \
