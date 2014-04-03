@@ -14,8 +14,11 @@
 
 
 # Media config
-PRODUCT_COPY_FILES += \
-    device/samsung/qcom-common/media/media_codecs.xml:system/etc/media_codecs.xml
+ifeq ($(TARGET_BOARD_PLATFORM),msm8974)
+PRODUCT_COPY_FILES += device/samsung/qcom-common/media/media_codes_8974.xml:system/etc/media_codecs.xml
+else
+PRODUCT_COPY_FILES += device/samsung/qcom-common/media/media_codecs.xml:system/etc/media_codecs.xml
+endif
 
 # QCOM Display
 PRODUCT_PACKAGES += \
@@ -27,22 +30,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     debug.egl.hw=1 \
-    debug.composition.type=dyn \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
     ro.telephony.ril_class=SamsungQualcommRIL \
-    ro.telephony.call_ring.multiple=0 \
-    qcom.hw.aac.encoder=true
-
-# Vendor init module
-PRODUCT_PACKAGES += \
-    libinit_msm
+    ro.telephony.call_ring.multiple=0
 
 # Omx
 PRODUCT_PACKAGES += \
     libdivxdrmdecrypt \
     libmm-omxcore \
     libOmxCore \
+    libc2dcolorconvert \
+    libOmxVdecHevc \
     libstagefrighthw \
     libOmxVdec \
     libOmxVenc \
@@ -59,14 +58,18 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # Thermal profiles
+ifneq ($(TARGET_BOARD_PLATFORM),msm8974)
 PRODUCT_PACKAGES += \
     thermald-8064ab.conf \
     thermald-8064.conf \
     thermald-8930.conf \
     thermald-8930ab.conf \
     thermald-8960.conf \
+    thermald-8260a.conf \
     thermald-8960ab.conf \
-    thermal-engine-8064ab.conf
+    thermal-engine-8064ab.conf \
+    init.qcom.thermal_conf.sh
+endif
 
 # Init scripts
 PRODUCT_PACKAGES += \
@@ -74,6 +77,7 @@ PRODUCT_PACKAGES += \
     init.qcom.efs.sync.sh \
     init.qcom.sh \
     init.qcom.class_core.sh \
+    init.qcom.class_main.sh \
     init.qcom.syspart_fixup.sh \
     init.qcom.early_boot.sh \
     init.qcom.mdm_links.sh \
@@ -81,8 +85,8 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     lpm.rc \
     init.qcom.lpm_boot.sh \
-    init.qcom.thermal_conf.sh \
-    init.recovery.qcom.rc
+    init.recovery.qcom.rc \
+    init.qcom.ril.sh
 
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
